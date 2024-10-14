@@ -1,0 +1,48 @@
+Issue Explanation for Bad Requests
+
+1. Estimates Update Operation
+Operation URL: http://localhost:3000/zoho-invoices/estimates?action=update&estimate_id=67890&line_items=[{"item_id":"1001","rate":"120","quantity":"1"}]
+Problem: When attempting to update an estimate using the URL format above, I encountered a "Bad Request" error. This suggests that the server is rejecting the request due to potentially incorrect or missing parameters.
+
+Actions Taken:
+    Verified that estimate_id, customer_id, custom_fields, and line_items are included in the query string and properly formatted.
+Confirmed that line_items and custom_fields are valid JSON strings.
+
+2. Expenses Create Operation
+Operation URL: http://localhost:3000/zoho-invoices/expenses?action=create&amount=150&reference_number=EXP-1234&date=2024-08-30&line_items=[{"item_id":"789","rate":"150","quantity":"1"}]
+
+Problem: The create expense operation results in a "Bad Request" error.
+
+
+Actions Taken:
+    Ensured that amount, reference_number, and date are included and properly formatted in the query string.
+    Checked that line_items is a valid JSON string if provided.
+
+3. Expenses Update Operation
+Operation URL: http://localhost:3000/zoho-invoices/expenses?action=update&id=123456&date=2024-08-30&line_items=[{"item_id":"789","rate":"150","quantity":"1"}]
+
+Problem: Updating an expense using the URL above returns a "Bad Request" error.
+
+Actions Taken:
+    Verified the presence of id and correct formatting.
+    Ensured that date and line_items are included and valid JSON strings.
+
+4. Projects Update Operation
+Operation URL: http://localhost:3000/zoho-invoices/projects/1234567890?action=update&project_name=UpdatedProject&customer_id=1976733000000027300&billing_type=Fixed&user_id=1234567890&tasks=[{"task_name":"Redesign"}]&users=[{"user_id":"1234567890"}]
+
+
+Problem: The update project operation fails with a "Bad Request" error.
+
+Actions Taken:
+
+    Checked that id, project_name, customer_id, billing_type, and user_id are correctly provided.
+    Ensured tasks and users are valid JSON strings if included.
+
+5. Projects Create Operation
+Operation URL: http://localhost:3000/zoho-invoices/projects?action=create&project_name=NewProject&customer_id=1976733000000027300&billing_type=Hourly&user_id=1234567890&tasks=[{"task_name":"Design"}]&users=[{"user_id":"1234567890"}]
+
+Problem: The create project operation results in a "Bad Request" error.
+
+Actions Taken:
+    Confirmed the inclusion and correct formatting of project_name, customer_id, billing_type, and user_id.
+    Validated that tasks and users are formatted as valid JSON strings if provided.

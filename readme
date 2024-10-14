@@ -1,0 +1,401 @@
+Without using REST API:
+
+1. Authorize
+URL: http://localhost:3000/zoho-invoices/authorize
+
+2. Callback
+URL: http://localhost:3000/zoho-invoices/callback?code=<authorization_code>
+
+3. Contacts/Customers Operations
+List Contacts:
+URL: http://localhost:3000/zoho-invoices/contacts?action=list
+Create Contact:
+URL: http://localhost:3000/zoho-invoices/contacts?action=create&contact_name=<name>&<other_params>
+Update Contact:
+URL: http://localhost:3000/zoho-invoices/contacts?action=update&contact_id=<id>&contact_name=<name>&
+<other_params>
+Delete Contact:
+URL: http://localhost:3000/zoho-invoices/contacts?action=delete&contact_id=<id>
+Get Contact:
+URL: http://localhost:3000/zoho-invoices/contacts?action=get&contact_id=<id>
+
+4. Estimates Operations
+List Estimates:
+URL: http://localhost:3000/zoho-invoices/estimates?action=list
+Create Estimate:
+URL: http://localhost:3000/zoho-invoices/estimates?action=create&customer_id=<id>&line_items=<line_items_json>&<other_params>
+Update Estimate:
+URL: http://localhost:3000/zoho-invoices/estimates?action=update&estimate_id=<id>&customer_id=<id>&custom_fields=<custom_fields_json>&line_items=<line_items_json>&<other_params>
+Delete Estimate:
+URL: http://localhost:3000/zoho-invoices/estimates?action=delete&estimate_id=<id>
+Get Estimate:
+URL: http://localhost:3000/zoho-invoices/estimates?action=get&estimate_id=<id>
+
+5. Customer Payments Operations
+List Customer Payments:
+URL: http://localhost:3000/zoho-invoices/customer-payments?action=list
+Create Customer Payment:
+URL: http://localhost:3000/zoho-invoices/customer-payments?action=create&customer_id=<id>&payment_mode=<mode>&amount=<amount>&date=<date>&invoices=<invoices_json>
+Update Customer Payment:
+URL: http://localhost:3000/zoho-invoices/customer-payments?action=update&payment_id=<id>&customer_id=<id>&payment_mode=<mode>&amount=<amount>&date=<date>&invoices=<invoices_json>
+Delete Customer Payment:
+URL: http://localhost:3000/zoho-invoices/customer-payments?action=delete&payment_id=<id>
+Get Customer Payment:
+URL: http://localhost:3000/zoho-invoices/customer-payments?action=get&payment_id=<id>
+
+6. Expenses Operations
+List Expenses:
+URL: http://localhost:3000/zoho-invoices/expenses?action=list
+Create Expense:
+URL: http://localhost:3000/zoho-invoices/expenses?action=create&amount=<amount>&reference_number=<reference>&date=<date>&line_items=<line_items_json>
+Update Expense:
+URL: http://localhost:3000/zoho-invoices/expenses?action=update&id=<id>&date=<date>&line_items=<line_items_json>
+Delete Expense:
+URL: http://localhost:3000/zoho-invoices/expenses?action=delete&id=<id>
+Get Expense:
+URL: http://localhost:3000/zoho-invoices/expenses?action=get&id=<id>
+
+7. Projects Operations
+List Projects:
+URL: http://localhost:3000/zoho-invoices/projects?action=list
+Create Project:
+URL: http://localhost:3000/zoho-invoices/projects?action=create&project_name=<name>&customer_id=<id>&billing_type=<type>&user_id=<id>&tasks=<tasks_json>&users=<users_json>
+Update Project:
+URL: http://localhost:3000/zoho-invoices/projects?action=update&id=<id>&project_name=<name>&customer_id=<id>&billing_type=<type>&user_id=<id>&tasks=<tasks_json>&users=<users_json>
+Delete Project:
+URL: http://localhost:3000/zoho-invoices/projects?action=delete&id=<id>
+Get Project:
+URL: http://localhost:3000/zoho-invoices/projects?action=get&id=<id>
+
+8. Invoices Operations
+List Invoices:
+URL: http://localhost:3000/zoho-invoices/invoices?action=list
+Create Invoice:
+URL: http://localhost:3000/zoho-invoices/invoices?action=create&customer_id=<id>&date=<date>&line_items=<line_items_json>
+Update Invoice:
+URL: http://localhost:3000/zoho-invoices/invoices?action=update&id=<id>&customer_id=<id>&line_items=<line_items_json>
+Delete Invoice:
+URL: http://localhost:3000/zoho-invoices/invoices?action=delete&id=<id>
+Get Invoice:
+URL: http://localhost:3000/zoho-invoices/invoices?action=get&id=<id>
+
+
+
+
+
+
+
+
+Using REST API:
+
+### 1. **Contacts**
+
+#### **List Contacts**
+```
+https://invoice.zoho.in/api/v3/contacts?organization_id=60032028351
+```
+
+#### **Create Contact**
+```
+https://invoice.zoho.in/api/v3/contacts?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "contact_name": "Contact Name",
+  "other_parameters": "value"
+}
+```
+
+#### **Update Contact**
+```
+https://invoice.zoho.in/api/v3/contacts/{contact_id}?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "contact_name": "Updated Contact Name",
+  "other_parameters": "value"
+}
+```
+
+#### **Delete Contact**
+```
+https://invoice.zoho.in/api/v3/contacts/{contact_id}?organization_id=60032028351
+```
+
+#### **Get Contact**
+```
+https://invoice.zoho.in/api/v3/contacts/{contact_id}?organization_id=60032028351
+```
+
+### 2. **Estimates**
+
+#### **List Estimates**
+```
+https://invoice.zoho.in/api/v3/estimates?organization_id=60032028351
+```
+
+#### **Create Estimate**
+```
+https://invoice.zoho.in/api/v3/estimates?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "customer_id": "123456",
+  "line_items": [
+    {
+      "item_id": "item_id",
+      "rate": "120",
+      "quantity": "1"
+    }
+  ]
+}
+```
+
+#### **Update Estimate**
+```
+https://invoice.zoho.in/api/v3/estimates/{estimate_id}?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "customer_id": "123456",
+  "custom_fields": [
+    {
+      "label": "CustomField",
+      "value": "value"
+    }
+  ],
+  "line_items": [
+    {
+      "item_id": "item_id",
+      "rate": "120",
+      "quantity": "1"
+    }
+  ]
+}
+```
+
+#### **Delete Estimate**
+```
+https://invoice.zoho.in/api/v3/estimates/{estimate_id}?organization_id=60032028351
+```
+
+#### **Get Estimate**
+```
+https://invoice.zoho.in/api/v3/estimates/{estimate_id}?organization_id=60032028351
+```
+
+### 3. **Customer Payments**
+
+#### **List Customer Payments**
+```
+https://invoice.zoho.in/api/v3/customerpayments?organization_id=60032028351
+```
+
+#### **Create Customer Payment**
+```
+https://invoice.zoho.in/api/v3/customerpayments?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "customer_id": "123456",
+  "payment_mode": "Cash",
+  "amount": "1000",
+  "date": "2024-08-31",
+  "invoices": [
+    {
+      "invoice_id": "invoice_id",
+      "amount": "1000"
+    }
+  ]
+}
+```
+
+#### **Update Customer Payment**
+```
+https://invoice.zoho.in/api/v3/customerpayments/{payment_id}?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "customer_id": "123456",
+  "payment_mode": "Credit Card",
+  "amount": "1500",
+  "date": "2024-08-31",
+  "invoices": [
+    {
+      "invoice_id": "invoice_id",
+      "amount": "1500"
+    }
+  ]
+}
+```
+
+#### **Delete Customer Payment**
+```
+https://invoice.zoho.in/api/v3/customerpayments/{payment_id}?organization_id=60032028351
+```
+
+#### **Get Customer Payment**
+```
+https://invoice.zoho.in/api/v3/customerpayments/{payment_id}?organization_id=60032028351
+```
+
+### 4. **Expenses**
+
+#### **List Expenses**
+```
+https://invoice.zoho.in/api/v3/expenses?organization_id=60032028351
+```
+
+#### **Create Expense**
+```
+https://invoice.zoho.in/api/v3/expenses?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "amount": "100",
+  "reference_number": "EXP123",
+  "date": "2024-08-31",
+  "line_items": [
+    {
+      "item_id": "item_id",
+      "rate": "50",
+      "quantity": "2"
+    }
+  ]
+}
+```
+
+#### **Update Expense**
+```
+https://invoice.zoho.in/api/v3/expenses/{id}?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "date": "2024-08-31",
+  "line_items": [
+    {
+      "item_id": "item_id",
+      "rate": "50",
+      "quantity": "2"
+    }
+  ]
+}
+```
+
+#### **Delete Expense**
+```
+https://invoice.zoho.in/api/v3/expenses/{id}?organization_id=60032028351
+```
+
+#### **Get Expense**
+```
+https://invoice.zoho.in/api/v3/expenses/{id}?organization_id=60032028351
+```
+
+### 5. **Projects**
+
+#### **List Projects**
+```
+https://invoice.zoho.in/api/v3/projects?organization_id=60032028351
+```
+
+#### **Create Project**
+```
+https://invoice.zoho.in/api/v3/projects?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "project_name": "Project Name",
+  "customer_id": "123456",
+  "billing_type": "fixed_cost_for_project",
+  "user_id": "user_id"
+}
+```
+
+#### **Update Project**
+```
+https://invoice.zoho.in/api/v3/projects/{id}?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "project_name": "Updated Project Name",
+  "customer_id": "123456",
+  "billing_type": "fixed_cost_for_project",
+  "user_id": "user_id"
+}
+```
+
+#### **Delete Project**
+```
+https://invoice.zoho.in/api/v3/projects/{id}?organization_id=60032028351
+```
+
+#### **Get Project**
+```
+https://invoice.zoho.in/api/v3/projects/{id}?organization_id=60032028351
+```
+
+### 6. **Invoices**
+
+#### **List Invoices**
+```
+https://invoice.zoho.in/api/v3/invoices?organization_id=60032028351
+```
+
+#### **Create Invoice**
+```
+https://invoice.zoho.in/api/v3/invoices?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "customer_id": "123456",
+  "date": "2024-08-31",
+  "line_items": [
+    {
+      "item_id": "item_id",
+      "rate": "120",
+      "quantity": "1"
+    }
+  ]
+}
+```
+
+#### **Update Invoice**
+```
+https://invoice.zoho.in/api/v3/invoices/{id}?organization_id=60032028351
+```
+*Body:*
+```json
+{
+  "customer_id": "123456",
+  "line_items": [
+    {
+      "item_id": "item_id",
+      "rate": "120",
+      "quantity": "1"
+    }
+  ]
+}
+```
+
+#### **Delete Invoice**
+```
+https://invoice.zoho.in/api/v3/invoices/{id}?organization_id=60032028351
+```
+
+#### **Get Invoice**
+```
+https://invoice.zoho.in/api/v3/invoices/{id}?organization_id=60032028351
+```
+
